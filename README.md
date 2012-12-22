@@ -11,6 +11,7 @@ TabActivityに似たもの。
 
 ## Usage
 
+### Activity
 TabNyanActivityを継承。
 
 レイアウトファイルはTabHost使用時と同様に。
@@ -38,4 +39,15 @@ public class MainActivity extends TabNyanActivity {
 }
 ``` 
 
-詳細はソースコードを。
+### タブ内Fragment切り替え
+
+タブ内でFragmentを切り替える時のViewIdには com.zero.star.tabnyan.R.id.fragment を指定する
+
+```java
+FragmentTransaction t = getFragmentManager().beginTransaction();
+t.addToBackStack(null);
+t.replace(com.zero.star.tabnyan.R.id.fragment, new ChildFragment());
+t.commit();
+```
+
+

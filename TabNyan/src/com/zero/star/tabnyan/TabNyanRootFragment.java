@@ -7,16 +7,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 public class TabNyanRootFragment extends Fragment {
 
-    /** view id of fragment */
-    private static final int VIEW_ID = 1;
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return createView(container);
+		return inflater.inflate(R.layout.fragment_tabnyan_root, container, false);
 	}
 
 	@Override
@@ -24,22 +20,6 @@ public class TabNyanRootFragment extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 
         initFragment();
-	}
-
-	/**
-	 * Create view.
-	 * @param container parent view
-	 * @return Created view
-	 */
-	private View createView(ViewGroup container) {
-        FrameLayout v = new FrameLayout(getActivity());
-        ViewGroup.LayoutParams params = container.getLayoutParams();
-        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
-        params.height = ViewGroup.LayoutParams.MATCH_PARENT;
-        v.setLayoutParams(params);
-        v.setId(VIEW_ID);
-
-        return v;
 	}
 
 	/**
@@ -59,14 +39,14 @@ public class TabNyanRootFragment extends Fragment {
 		String rootClass = args.getString(TabNyanActivity.ROOT_FRAGMENT_ARGS);
 
 		FragmentManager fragmentManager = getChildFragmentManager();
-        if (fragmentManager.findFragmentById(VIEW_ID) != null) {
+        if (fragmentManager.findFragmentById(R.id.fragment) != null) {
             return;
         }
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         Fragment fragment = Fragment.instantiate(getActivity(), rootClass, args);
-        fragmentTransaction.replace(VIEW_ID, fragment);
+        fragmentTransaction.replace(R.id.fragment, fragment);
 
         fragmentTransaction.commit();
 	}
