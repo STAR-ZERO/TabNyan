@@ -1,8 +1,8 @@
 # TabNyan
 
-TabActivityに似たもの。
+タブUIの管理を楽にする。
 
-タブ内にFragmentを使用してタブの管理を楽にするやつ。
+タブ内でのFragment切り替えが可能。
 
 
 ## Install
@@ -11,14 +11,49 @@ TabActivityに似たもの。
 
 ## Usage
 
+### レイアウト
+レイアウトファイルはTabHost使用時と同様に。
+
+TabWidgetの場所は変更可能。
+
+```xml
+<TabHost
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"/>
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0"/>
+        <FrameLayout
+            android:id="@+id/realtabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</TabHost>
+```
+
 ### Activity
 TabNyanActivityを継承。
-
-レイアウトファイルはTabHost使用時と同様に。
 
 setupメソッドを必ず呼び出す。引数はFragmentで使用するViewのID, OnTabChangeListenerを渡す。
 
 タブを追加する時はaddTabを呼び出す。
+
+カスタムViewやFragmentに引数を渡すこともできます。詳しくはソースを見れば分かるかと…
 
 
 ```java
@@ -39,7 +74,7 @@ public class MainActivity extends TabNyanActivity {
 }
 ``` 
 
-### タブ内Fragment切り替え
+### タブ内でのFragment切り替え
 
 タブ内でFragmentを切り替える時のViewIdには com.zero.star.tabnyan.R.id.fragment を指定する
 
