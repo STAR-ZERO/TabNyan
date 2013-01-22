@@ -187,6 +187,15 @@ public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabCh
     }
 
     /**
+     * Get the Fragment that is displayed in the selected tab
+     * @return Fragment
+     */
+    protected Fragment getTabSelectedFragment() {
+        TabNyanRootFragment rootFragment = getCurrentFragment();
+        return rootFragment.getCurrentFragment();
+    }
+
+    /**
      * Dummy view for android:id/tabcontent.
      */
     private static class DummyTabFactory implements TabContentFactory {

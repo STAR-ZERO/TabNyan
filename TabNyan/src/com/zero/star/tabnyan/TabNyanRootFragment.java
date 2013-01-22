@@ -51,4 +51,13 @@ public class TabNyanRootFragment extends Fragment {
         fragmentTransaction.commit();
 	}
 
+	/**
+	 * Return Fragment in displayed
+	 * @return Fragment
+	 */
+	Fragment getCurrentFragment() {
+	    FragmentManager fragmentManager = getChildFragmentManager();
+	    return fragmentManager.findFragmentById(R.id.fragment);
+	}
+
 }
