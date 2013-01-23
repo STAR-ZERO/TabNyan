@@ -199,6 +199,22 @@ public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabCh
     }
 
     /**
+     * Set current tab index
+     * @param index tab index
+     */
+    public void setCurrentTab(int index) {
+        mTabHost.setCurrentTab(index);
+    }
+
+    /**
+     * Get current tab index
+     * @return tab index
+     */
+    public int getCurrentTab() {
+        return mTabHost.getCurrentTab();
+    }
+
+    /**
      * Dummy view for android:id/tabcontent.
      */
     private static class DummyTabFactory implements TabContentFactory {
