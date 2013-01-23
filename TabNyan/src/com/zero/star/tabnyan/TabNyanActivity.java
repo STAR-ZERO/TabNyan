@@ -190,7 +190,7 @@ public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabCh
      * Get the Fragment that is displayed in the selected tab
      * @return Fragment
      */
-    protected Fragment getTabSelectedFragment() {
+    public Fragment getTabSelectedFragment() {
         TabNyanRootFragment rootFragment = getCurrentFragment();
         return rootFragment.getCurrentFragment();
     }
