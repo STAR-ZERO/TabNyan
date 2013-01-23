@@ -56,6 +56,9 @@ public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabCh
             if (mLastTabInfo != null) {
                 fragmentTransaction.detach(mLastTabInfo.fragment);
             }
+            if (getSupportFragmentManager().findFragmentById(mContentId) != null) {
+                fragmentTransaction.detach(getSupportFragmentManager().findFragmentById(mContentId));
+            }
             if (newTab.fragment == null) {
                 newTab.fragment = createTabRootFragment(newTab);
                 fragmentTransaction.add(mContentId, newTab.fragment);
