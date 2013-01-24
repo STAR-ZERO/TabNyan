@@ -185,7 +185,7 @@ public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabCh
      * Get current Fragment.
      * @return TabRootFragment
      */
-    private TabNyanRootFragment getCurrentFragment() {
+    public TabNyanRootFragment getCurrentFragment() {
         return (TabNyanRootFragment) getSupportFragmentManager().findFragmentById(mContentId);
     }
 
