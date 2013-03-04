@@ -16,7 +16,7 @@ import android.widget.TabHost.TabSpec;
 public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabChangeListener {
 
     /** parameter for root fragment */
-	static final String ROOT_FRAGMENT_ARGS = "root_nyan";
+    static final String ROOT_FRAGMENT_ARGS = "root_nyan";
 
     /** TabHost */
     private TabHost mTabHost;
@@ -25,7 +25,7 @@ public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabCh
     private TabInfo mLastTabInfo;
 
     /** tag and TabInfo Map */
-    private Map<String, TabInfo> mMapTaInfo;
+    private Map<String, TabInfo> mMapTabInfo;
 
     /** View id of Fragment */
     private int mContentId;
@@ -49,7 +49,7 @@ public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabCh
 
     @Override
     public void onTabChanged(String tabId) {
-        TabInfo newTab = mMapTaInfo.get(tabId);
+        TabInfo newTab = mMapTabInfo.get(tabId);
 
         if (mLastTabInfo != newTab) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -72,7 +72,7 @@ public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabCh
         }
 
         if (mOnTabChangeListener != null) {
-        	mOnTabChangeListener.onTabChanged(tabId);
+            mOnTabChangeListener.onTabChanged(tabId);
         }
     }
 
@@ -83,13 +83,13 @@ public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabCh
      */
     protected void setup(int contentId, TabHost.OnTabChangeListener listener) {
 
-    	mContentId = contentId;
-    	mOnTabChangeListener = listener;
+        mContentId = contentId;
+        mOnTabChangeListener = listener;
 
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
 
-        mMapTaInfo = new HashMap<String, TabInfo>();
+        mMapTabInfo = new HashMap<String, TabInfo>();
 
         mTabHost.setOnTabChangedListener(this);
 
@@ -102,7 +102,7 @@ public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabCh
      * @param fragmentClass first view of Fragment
      */
     protected void addTab(String tag, String indicator, Class<? extends Fragment> fragmentClass) {
-    	addTab(tag, null, indicator, fragmentClass, new Bundle());
+        addTab(tag, null, indicator, fragmentClass, new Bundle());
     }
 
     /**
@@ -112,7 +112,7 @@ public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabCh
      * @param fragmentClass first view of Fragment
      */
     protected void addTab(String tag, View indicator, Class<? extends Fragment> fragmentClass) {
-    	addTab(tag, indicator, null, fragmentClass, new Bundle());
+        addTab(tag, indicator, null, fragmentClass, new Bundle());
     }
 
     /**
@@ -123,7 +123,7 @@ public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabCh
      * @param args pass arguments for Fragment
      */
     protected void addTab(String tag, String indicator, Class<? extends Fragment> fragmentClass, Bundle args) {
-    	addTab(tag, null, indicator, fragmentClass, args);
+        addTab(tag, null, indicator, fragmentClass, args);
     }
 
     /**
@@ -134,7 +134,7 @@ public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabCh
      * @param args pass arguments for Fragment
      */
     protected void addTab(String tag, View indicator, Class<? extends Fragment> fragmentClass, Bundle args) {
-    	addTab(tag, indicator, null, fragmentClass, args);
+        addTab(tag, indicator, null, fragmentClass, args);
     }
 
     /**
@@ -147,18 +147,18 @@ public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabCh
      */
     private void addTab(String tag, View viewIndicator, String stringIndicator, Class<? extends Fragment> fragmentClass, Bundle args) {
 
-    	if (args != null && args.containsKey(ROOT_FRAGMENT_ARGS)) {
-    		throw new IllegalArgumentException("arguments bundle key of the '" + ROOT_FRAGMENT_ARGS + "' is invalid");
-    	}
+        if (args != null && args.containsKey(ROOT_FRAGMENT_ARGS)) {
+            throw new IllegalArgumentException("arguments bundle key of the '" + ROOT_FRAGMENT_ARGS + "' is invalid");
+        }
 
-    	mMapTaInfo.put(tag, new TabInfo(fragmentClass.getName(), args));
+        mMapTabInfo.put(tag, new TabInfo(fragmentClass.getName(), args));
 
         TabSpec tabSpec = mTabHost.newTabSpec(tag);
         if (viewIndicator != null) {
-        	tabSpec.setIndicator(viewIndicator);
+            tabSpec.setIndicator(viewIndicator);
         }
         if (stringIndicator != null) {
-        	tabSpec.setIndicator(stringIndicator);
+            tabSpec.setIndicator(stringIndicator);
         }
         tabSpec.setContent(new DummyTabFactory(this));
 
@@ -173,7 +173,7 @@ public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabCh
      */
     private Fragment createTabRootFragment(TabInfo tabInfo) {
 
-    	tabInfo.args.putString(ROOT_FRAGMENT_ARGS, tabInfo.className);
+        tabInfo.args.putString(ROOT_FRAGMENT_ARGS, tabInfo.className);
 
         TabNyanRootFragment fragment = new TabNyanRootFragment();
         fragment.setArguments(tabInfo.args);
@@ -256,8 +256,8 @@ public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabCh
          * @param args Fragment arguments
          */
         TabInfo(String className, Bundle args) {
-        	this.className = className;
-        	this.args = args;
+            this.className = className;
+            this.args = args;
         }
     }
 
