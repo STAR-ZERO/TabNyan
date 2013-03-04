@@ -86,3 +86,5 @@ t.commit();
 ```
 
 
+## License
+TabNyan is available under the terms of the [MIT License](https://github.com/STAR-ZERO/TabNyan/blob/master/LICENSE).
