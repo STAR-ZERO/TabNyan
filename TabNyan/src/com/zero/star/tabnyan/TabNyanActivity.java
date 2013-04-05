@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -42,6 +43,11 @@ public class TabNyanActivity extends FragmentActivity implements TabHost.OnTabCh
     }
 
     @Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		getCurrentFragment().onActivityResult(requestCode & 0xffff, resultCode, data);
+	}
+
+	@Override
     protected void onDestroy() {
         super.onDestroy();
         mTabHost = null;
